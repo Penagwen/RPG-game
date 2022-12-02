@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+body {
+    overflow: hidden;
+    margin: 0px;
+    
+    font-family: 'Silkscreen', cursive;
+
+    display: grid;
+    grid-template-columns: 20vw 60vw 20vw;
+    grid-template-rows: 70vh 30vh;
+}
+
+.stats-window {
+    padding: 10px;
+
+    color: #555;
+    background-color: #EEE;
+    border: 2px solid black;
+}
+
+.stats-window .exp-bar {
+    display: flex;
+
+    width: 90%;
+    height: 20px;
+
+    text-align: center;
+
+    border: 2px solid black;
+    border-radius: 25px;
+
+    z-index: 1;
+}
+
+.stats-window .exp-bar .exp-percentage{    
+    height: 20px;
+
+    border-radius: 25px;
+    background-color: rgba(173, 216, 230, 1);
+}
+
+.stats-window .exp-bar p {
+    position: absolute;
+
+    top: 79px;
+    left: 20px;
+}
+
+
+
+
+.boss-screen {
+    border: 2px solid black;
+}
+
+.quest-window {
+    background-color: burlywood;
+}
+
+.curr-player-stats {
+    background-color: yellowgreen;
+}
+
+.hotbar {
+    background-color: aqua;
+}
+
+.invintory {
+    background-color: blueviolet;
+}
