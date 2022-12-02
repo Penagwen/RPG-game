@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
-
+ 
 body {
     overflow: hidden;
     margin: 0px;
@@ -51,7 +51,42 @@ body {
 
 
 .boss-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+
     border: 2px solid black;
+}
+
+.boss-screen .boss-image {
+    width: 50%;
+    height: 50%;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.boss-screen .boss-healthbar {
+    width: 50%;
+    height: 2%;
+
+    margin: 35px;
+
+    background-color: #555;
+
+    border: 10px solid black;
+    border-radius: 25px;
+}
+
+.boss-screen .boss-healthbar .boss-health {
+    width: 0%;
+    height: 100%;
+
+    background-color: red;
+    border-radius: 25px;
 }
 
 .quest-window {

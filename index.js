@@ -1,4 +1,4 @@
-let player = { 
+let player = {  
     GOLD: 0,
     EXP: 0,
     LEVEL: 0,
@@ -38,9 +38,8 @@ const attacks = {
     }
 }
 
-const bosses = [
-    {
-        name: "Gatekeeper",
+const bosses = {
+    "Darkness Flame": {
         level: 10,
         health: 100,
         defence: 0,
@@ -56,7 +55,7 @@ const bosses = [
             ITEM: "SLASH"
         }
     },
-];
+};
 
 function Update(){
     //requestAnimationFrame(Update);
@@ -75,5 +74,27 @@ function Update(){
     })
 }
 
+class Boss{
+    constructor(name){
+        this.name = name;
+        this.level = bosses[name].level;
+        this.health = bosses[name].health;
+        this.defence = bosses[name].defence;
+        this.mana = bosses[name].mana;
+        this.damage = bosses[name].damage;
+        this.magicDamage = bosses[name].magicDamage;
+        this.attacks = bosses[name].bossAttacks;
+        this.drops = bosses[name].drops;
+    }
 
+    spawn(){
+        console.log(this.name);
+        document.querySelector(".boss-screen .boss-image").style.backgroundImage = `url("./Frontview\ Batch\ Battlers/${this.name}.png")`;
+    }
+}
+
+let currBoss = 0;
+
+let enemy = new Boss(Object.keys(bosses)[currBoss]);
+enemy.spawn();
 Update();
