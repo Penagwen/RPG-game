@@ -16,6 +16,28 @@ let player = {
 
 let expToNextLevel = 100;
 
+const attacks = {
+    Phisical: {
+        PUNCH: {
+            damage: 10
+        }
+    },
+
+    Magic: {
+
+    },
+
+    Buff: {
+
+    },
+
+    Debuff: {
+        ROAR: {
+            damage: "-25%"
+        }
+    }
+}
+
 const bosses = [
     {
         name: "Gatekeeper",
@@ -25,8 +47,9 @@ const bosses = [
         mana: 100,
         damage: 10,
         magicDamage: 0,
-        attacks: [
-            ""
+        bossAttacks: [
+            "PUNCH",
+            "ROAR"
         ],
         drops: {
             GOLD: Math.floor(Math.random()*70)+30,
@@ -34,8 +57,6 @@ const bosses = [
         }
     },
 ];
-
-
 
 function Update(){
     //requestAnimationFrame(Update);
