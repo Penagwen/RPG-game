@@ -39,7 +39,7 @@ const attacks = {
 }
 
 const bosses = {
-    "Darkness Flame": {
+    "Dragons Scarlet Wyrm": {
         level: 10,
         health: 100,
         defence: 0,
@@ -90,6 +90,8 @@ class Boss{
     spawn(){
         console.log(this.name);
         document.querySelector(".boss-screen .boss-image").style.backgroundImage = `url("./Frontview\ Batch\ Battlers/${this.name}.png")`;
+        document.querySelector(".boss-screen .boss-healthbar .boss-health").style.width = `${(this.health/bosses[this.name].health)*100}%`;
+        document.querySelector(".boss-screen .boss-level").innerHTML = `Level: ${this.level}`;
     }
 }
 
