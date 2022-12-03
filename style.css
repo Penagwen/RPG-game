@@ -61,7 +61,19 @@ body {
     border: 2px solid black;
 }
 
-.boss-screen .boss-image {
+.boss-screen .boss {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+}
+
+.boss-screen .boss .boss-image {
     width: 100%;
     height: 100%;
 
@@ -69,7 +81,7 @@ body {
     background-position: center center;
 }
 
-.boss-screen .boss-healthbar {
+.boss-screen .boss .boss-healthbar {
     width: 50%;
     height: 2%;
 
@@ -81,7 +93,7 @@ body {
     border-radius: 25px;
 }
 
-.boss-screen .boss-healthbar .boss-health {
+.boss-screen .boss .boss-healthbar .boss-health {
     width: 0%;
     height: 100%;
 
@@ -89,7 +101,7 @@ body {
     border-radius: 25px;
 }
 
-.boss-screen .boss-level {
+.boss-screen .boss .boss-level {
     font-size: 25px;
     margin-bottom: -30px;
 }

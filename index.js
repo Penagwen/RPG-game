@@ -18,13 +18,33 @@ let expToNextLevel = 100;
 
 const attacks = {
     Phisical: {
-        PUNCH: {
-            damage: 10
+        "PUNCH": {
+            damage: 10,
+        },
+        "BITE": {
+            damage: 20,
+        },
+        "STOMP": {
+            damage: 15,
+        },
+        "CHARGE": {
+            damage: 30,
+            recoil: 10,
+        },
+        "WHIP": {
+            damage: 25,
         }
     },
 
     Magic: {
-
+        "POSION DART": {
+            damage: 5,
+            debuff: "POSION"
+        },
+        "POSION MUCUS": {
+            damage: 10,
+            debuff: "POSION"
+        },
     },
 
     Buff: {
@@ -32,8 +52,17 @@ const attacks = {
     },
 
     Debuff: {
-        ROAR: {
+        "ROAR": {
             damage: "-25%"
+        },
+        "INTIMIDATE": {
+            defence: "-10%"
+        },
+        "POSION": {
+            DPS: "2"
+        },
+        "TRAP": {
+            stun: "2"
         }
     }
 }
@@ -52,7 +81,46 @@ const bosses = {
         ],
         drops: {
             GOLD: Math.floor(Math.random()*70)+30,
+            EXP: Math.floor(Math.random()*50)+150,
             ITEM: "SLASH"
+        }
+    },
+    "Cerberus Ptolemaios": {
+        level: 15,
+        health: 180,
+        defence: 20,
+        mana: 70,
+        damage: 20,
+        magicDamage: 20,
+        bossAttacks: [
+            "BITE",
+            "ROAR",
+            "STOMP"
+        ],
+        drops: {
+            GOLD: Math.floor(Math.random()*60)+50,
+            EXP: Math.floor(Math.random()*70)+180,
+            ITEM: "INTIMIDATE",
+            ITEM: "CHARGE"
+        }
+    },
+    "Toxic Root B": {
+        level: 20,
+        health: 150,
+        defence: 50,
+        mana: 200,
+        damage: 10,
+        magicDamage: 25,
+        bossAttacks: [
+            "WHIP",
+            "POSION DART",
+            "POSION MUCUS",
+        ],
+        drops: {
+            GOLD: Math.floor(Math.random()*100)+80,
+            EXP: Math.floor(Math.random()*250)+350,
+            ITEM: "POSION DART",
+            ITEM: "TRAP",
         }
     },
 };
@@ -72,6 +140,13 @@ function Update(){
             }
         }
     })
+
+    if(enemy.health <= 0){ 
+        enemy.endScreen();
+        currBoss ++;
+        enemy = new Boss(Object.keys(bosses)[currBoss]);
+    }
+    enemy.update();
 }
 
 class Boss{
@@ -87,16 +162,20 @@ class Boss{
         this.drops = bosses[name].drops;
     }
 
-    spawn(){
+    update(){
         console.log(this.name);
         document.querySelector(".boss-screen .boss-image").style.backgroundImage = `url("./Frontview\ Batch\ Battlers/${this.name}.png")`;
         document.querySelector(".boss-screen .boss-healthbar .boss-health").style.width = `${(this.health/bosses[this.name].health)*100}%`;
         document.querySelector(".boss-screen .boss-level").innerHTML = `Level: ${this.level}`;
     }
+
+    endScreen(){
+        document.querySelector(".boss-screen .boss").style.display = "none";
+        
+    }
 }
 
 let currBoss = 0;
-
 let enemy = new Boss(Object.keys(bosses)[currBoss]);
-enemy.spawn();
+
 Update();
