@@ -126,7 +126,7 @@ const bosses = {
 };
 
 function Update(){
-    requestAnimationFrame(Update);
+    //requestAnimationFrame(Update);
 
     Object.values(document.querySelector(".stats-window").children).forEach((el) => {
         if(el.id != ""){
@@ -153,7 +153,7 @@ class Boss{
     constructor(name){
         this.name = name;
         this.level = bosses[name].level;
-        this.health = bosses[name].health*0.5;
+        this.health = bosses[name].health;
         this.defence = bosses[name].defence;
         this.mana = bosses[name].mana;
         this.damage = bosses[name].damage;
@@ -162,10 +162,14 @@ class Boss{
         this.drops = bosses[name].drops;
     }
 
-    update(){
+    draw(){
         document.querySelector(".boss-screen .boss-image").src = `./Frontview\ Batch\ Battlers/${this.name}.png`;
         document.querySelector(".boss-screen .boss-healthbar .boss-health").style.width = `${(this.health/bosses[this.name].health)*(document.querySelector(".boss-screen .boss-healthbar").clientWidth)}px`;
         document.querySelector(".boss-screen .boss-level").innerHTML = `Level: ${this.level}`;
+    }
+
+    update(){
+        document.querySelector(".boss-screen .boss-healthbar .boss-health").style.width = `${(this.health/bosses[this.name].health)*(document.querySelector(".boss-screen .boss-healthbar").clientWidth)}px`;
     }
 
     endScreen(){
@@ -176,5 +180,6 @@ class Boss{
 
 let currBoss = 0;
 let enemy = new Boss(Object.keys(bosses)[currBoss]);
+enemy.draw();
 
 Update();

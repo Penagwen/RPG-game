@@ -103,7 +103,15 @@ body {
 }
 
 .quest-window {
-    background-color: burlywood;
+    padding: 10px;
+
+    color: #555;
+    background-color: #EEE;
+    border: 2px solid black;
+}
+
+.quest-window ul {
+    list-style-type: "- ";
 }
 
 .curr-player-stats {
