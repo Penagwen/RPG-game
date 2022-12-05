@@ -1,4 +1,4 @@
-let player = {  
+let player = {   
     GOLD: 0,
     EXP: 0,
     LEVEL: 0,
@@ -126,7 +126,7 @@ const bosses = {
 };
 
 function Update(){
-    //requestAnimationFrame(Update);
+    requestAnimationFrame(Update);
 
     Object.values(document.querySelector(".stats-window").children).forEach((el) => {
         if(el.id != ""){
@@ -153,7 +153,7 @@ class Boss{
     constructor(name){
         this.name = name;
         this.level = bosses[name].level;
-        this.health = bosses[name].health;
+        this.health = bosses[name].health*0.5;
         this.defence = bosses[name].defence;
         this.mana = bosses[name].mana;
         this.damage = bosses[name].damage;
@@ -163,9 +163,8 @@ class Boss{
     }
 
     update(){
-        console.log(this.name);
-        document.querySelector(".boss-screen .boss-image").style.backgroundImage = `url("./Frontview\ Batch\ Battlers/${this.name}.png")`;
-        document.querySelector(".boss-screen .boss-healthbar .boss-health").style.width = `${(this.health/bosses[this.name].health)*100}%`;
+        document.querySelector(".boss-screen .boss-image").src = `./Frontview\ Batch\ Battlers/${this.name}.png`;
+        document.querySelector(".boss-screen .boss-healthbar .boss-health").style.width = `${(this.health/bosses[this.name].health)*(document.querySelector(".boss-screen .boss-healthbar").clientWidth)}px`;
         document.querySelector(".boss-screen .boss-level").innerHTML = `Level: ${this.level}`;
     }
 
