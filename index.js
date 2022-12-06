@@ -11,7 +11,10 @@ let player = {
     DEFENCE: 10,
     DAMAGE: 10,
     MAXMANA: 100,
-    MAGICDAMAGE: 10
+    MAGICDAMAGE: 10,
+
+    HEALTH: 100,
+    MANA: 100
 }
 
 let expToNextLevel = 100;
@@ -123,10 +126,24 @@ const bosses = {
             ITEM: "TRAP",
         }
     },
+    "Boss Hades": {
+        level: 999,
+        health: 100000,
+        defence: 100,
+        mana: 100000,
+        damage: 10000,
+        magicDamage: 10000,
+        bossAttacks: [
+            "DEATH"
+        ],
+        drops: {
+            ITEM: "WIN",
+        }
+    }
 };
 
 function Update(){
-    //requestAnimationFrame(Update);
+    requestAnimationFrame(Update);
 
     Object.values(document.querySelector(".stats-window").children).forEach((el) => {
         if(el.id != ""){
@@ -140,6 +157,12 @@ function Update(){
             }
         }
     })
+
+    // Player
+    document.querySelector(".curr-player-stats .player-healthbar .player-health").style.width = `${(player.HEALTH/player.MAXHEALTH)*100}%`;
+    document.querySelector(".curr-player-stats .player-manabar .player-mana").style.width = `${(player.MANA/player.MAXMANA)*100}%`;
+    document.querySelector(".curr-player-stats .player-healthbar .player-health span").innerHTML = `${player.HEALTH}/${player.MAXHEALTH}`;
+    document.querySelector(".curr-player-stats .player-manabar .player-mana span").innerHTML = `${player.MANA}/${player.MAXMANA}`;
 
     if(enemy.health <= 0){ 
         enemy.endScreen();
@@ -178,7 +201,7 @@ class Boss{
     }
 }
 
-let currBoss = 0;
+let currBoss = 3;
 let enemy = new Boss(Object.keys(bosses)[currBoss]);
 enemy.draw();
 

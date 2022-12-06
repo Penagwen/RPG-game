@@ -102,6 +102,10 @@ body {
     margin-bottom: -30px;
 }
 
+
+
+
+
 .quest-window {
     padding: 10px;
 
@@ -111,16 +115,94 @@ body {
 }
 
 .quest-window ul {
+    padding: 0px;
     list-style-type: "- ";
 }
 
+
+
+
+
 .curr-player-stats {
-    background-color: yellowgreen;
+    display: flex;
+    justify-content: top;
+    flex-direction: column;
+
+    padding: 10px;
+
+    color: black;
+    background-color: #EEE;
+    border: 2px solid black;
 }
+
+.curr-player-stats .player-healthbar,
+.curr-player-stats .player-manabar {
+    width: 95%;
+    height: 8%;
+
+    margin: 2px;
+
+    text-align: center;
+    font-size: 10px;
+
+    background-color: #555;
+    border: 5px solid black;
+    border-radius: 25px;
+}
+
+
+.curr-player-stats .player-healthbar .player-health {
+    height: 100%;
+
+    background-color: rgba(255, 0, 0, 0.8);
+    border-radius: 25px;
+}
+
+.curr-player-stats .player-manabar .player-mana {
+    height: 100%;
+
+    background-color: rgba(0, 255, 255, 0.8);
+    border-radius: 25px;
+}
+
+.curr-player-stats .player-healthbar .player-health span,
+.curr-player-stats .player-manabar .player-mana span {
+    display: inline-block;
+
+    min-width: 16.5vw;
+    min-height: 1vw;
+}
+
+.curr-player-stats .effects {
+    display: flex;
+}
+
+.curr-player-stats .effects .buffs{
+    width: 50%;
+    margin-right: 5%;
+}
+.curr-player-stats .effects .debuffs{
+    width: 50%;
+    margin-left: 5%;
+}
+
+.curr-player-stats .effects .buffs ul,
+.curr-player-stats .effects .debuffs ul{
+    padding: 0px;
+    list-style-type: none;
+}
+
+
+
+
 
 .hotbar {
     background-color: aqua;
 }
+
+
+
+
 
 .invintory {
     background-color: blueviolet;
