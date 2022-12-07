@@ -58,6 +58,7 @@ body {
     flex-direction: column;
     align-content: center;
 
+    background-color: #EEE;
     border: 2px solid black;
 }
 
@@ -197,7 +198,26 @@ body {
 
 
 .hotbar {
-    background-color: aqua;
+    color: #555;
+    background-color: #EEE;
+    border: 2px solid black;
+}
+
+.hotbar .moves {
+    width: 100%;
+    height: 50%;
+
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+}
+
+.hotbar .moves .slot {
+    border: 1px solid black;
+}
+
+.hotbar .description {
+    width: 100%;
+    height: 50%;   
 }
 
 
