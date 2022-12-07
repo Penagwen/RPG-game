@@ -1,11 +1,17 @@
-let player = {   
+let player = {    
     GOLD: 0,
     EXP: 0,
     LEVEL: 0,
 
     invintory: [],
 
-    hotbar: [],
+    hotbar: ["PUNCH", "POSION", "POSION DART"],
+
+    drawinvintory(){
+        Object.values(document.querySelector(".hotbar .moves").children).forEach((el, index) => {
+            el.innerHTML = `<span style="display: block; min-width: 100%; min-height: 100%;">${player.hotbar[index] == undefined ? "" : player.hotbar[index]}</span>`;
+        })
+    },
 
     MAXHEALTH: 100,
     DEFENCE: 10,
@@ -20,54 +26,52 @@ let player = {
 let expToNextLevel = 100;
 
 const attacks = {
-    Phisical: {
-        "PUNCH": {
-            damage: 10,
-        },
-        "BITE": {
-            damage: 20,
-        },
-        "STOMP": {
-            damage: 15,
-        },
-        "CHARGE": {
-            damage: 30,
-            recoil: 10,
-        },
-        "WHIP": {
-            damage: 25,
-        }
+    // Physical
+    "PUNCH": {
+        damage: 10,
+    },
+    "BITE": {
+        damage: 20,
+    },
+    "STOMP": {
+        damage: 15,
+    },
+    "CHARGE": {
+        damage: 30,
+        recoil: 10,
+    },
+    "WHIP": {
+        damage: 25,
     },
 
-    Magic: {
-        "POSION DART": {
-            damage: 5,
-            debuff: "POSION"
-        },
-        "POSION MUCUS": {
-            damage: 10,
-            debuff: "POSION"
-        },
+    // Magic
+    "POSION DART": {
+        damage: 5,
+        mana: 10,
+        debuff: "POSION"
+    },
+    "POSION MUCUS": {
+        damage: 10,
+        mana: 25,
+        debuff: "POSION"
     },
 
-    Buff: {
+    // Buff
 
+
+    // Debuff
+    "ROAR": {
+        damage: "-25%"
     },
-
-    Debuff: {
-        "ROAR": {
-            damage: "-25%"
-        },
-        "INTIMIDATE": {
-            defence: "-10%"
-        },
-        "POSION": {
-            DPS: "2"
-        },
-        "TRAP": {
-            stun: "2"
-        }
-    }
+    "INTIMIDATE": {
+        defence: "-10%"
+    },
+    "POSION": {
+        DPS: "2"
+    },
+    "TRAP": {
+        stun: "2"
+    },
 }
 
 const bosses = {
@@ -204,5 +208,24 @@ class Boss{
 let currBoss = 3;
 let enemy = new Boss(Object.keys(bosses)[currBoss]);
 enemy.draw();
+player.drawinvintory();
+
+
+window.onmousemove = (e) => {
+    let el = e.target.parentNode.className;
+    if(el.indexOf("slot") > -1){
+        let item = player.hotbar[el.substring(9, el.length)-1];
+        if(!!item){
+            document.querySelector(".hotbar .description").innerHTML = `
+                <span style="text-align: center; text-decoration: underline; width: 100%; display: inline-block;">${item}</span>
+                <span style="text-align: center; width: 100%; display: inline-block;>${Object.values(attacks[item])}</span>
+            `;
+            return;
+        }
+    }
+    document.querySelector(".hotbar .description").replaceChildren();
+}
+
 
 Update();
+ 
