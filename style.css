@@ -199,7 +199,7 @@ body {
 
 .hotbar {
     color: #555;
-    background-color: #EEE;
+    background-color: rgb(255, 255, 255);
     border: 2px solid black;
 }
 
@@ -208,7 +208,7 @@ body {
     height: 45%; 
 
     display: grid;
-    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
 }
 
 .hotbar .moves .slot {
@@ -220,6 +220,8 @@ body {
 }
 
 .hotbar .description {
+    margin-top: 1%;
+
     width: 100%;
     height: 55%;   
 }

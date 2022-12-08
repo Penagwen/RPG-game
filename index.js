@@ -9,7 +9,9 @@ let player = {
 
     drawinvintory(){
         Object.values(document.querySelector(".hotbar .moves").children).forEach((el, index) => {
-            el.innerHTML = `<span style="display: block; min-width: 100%; min-height: 100%;">${player.hotbar[index] == undefined ? "" : player.hotbar[index]}</span>`;
+            if(!!attacks[player.hotbar[index]]){
+                el.innerHTML = `<img src="${attacks[player.hotbar[index]].PATH}" width="90%" height="90%" style="filter: invert(100%)">`
+            }
         })
     },
 
@@ -29,31 +31,38 @@ const attacks = {
     // Physical
     "PUNCH": {
         damage: 10,
+        PATH: "./Move Icons/punch.svg",
     },
     "BITE": {
         damage: 20,
+        PATH: "./Move Icons/fangs.svg",
     },
     "STOMP": {
         damage: 15,
+        PATH: "./Move Icons/boot-stomp.svg",
     },
     "CHARGE": {
         damage: 30,
         recoil: 10,
+        PATH: "./Move Icons/sprint.svg",
     },
     "WHIP": {
         damage: 25,
+        PATH: "./Move Icons/whiplash.svg",
     },
 
     // Magic
     "POSION DART": {
         damage: 5,
         mana: 10,
-        debuff: "POSION"
+        debuff: "POSION",
+        PATH: "./Move Icons/dart.svg",
     },
     "POSION MUCUS": {
         damage: 10,
         mana: 25,
-        debuff: "POSION"
+        debuff: "POSION",
+        PATH: "./Move Icons/spill.svg",
     },
 
     // Buff
@@ -61,16 +70,20 @@ const attacks = {
 
     // Debuff
     "ROAR": {
-        damage: "-25%"
+        damage: "-25%",
+        PATH: "./Move Icons/shouting.svg",
     },
     "INTIMIDATE": {
-        defence: "-10%"
+        defence: "-10%",
+        PATH: "./Move Icons/bleeding-eye.svg",
     },
     "POSION": {
-        DPS: "2"
+        DPS: "2",
+        PATH: "./Move Icons/poison-gas.svg",
     },
     "TRAP": {
-        stun: "2"
+        stun: "2",
+        PATH: "./Move Icons/daemon-pull.svg",
     },
 }
 
